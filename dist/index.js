@@ -38,12 +38,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 function getCryptoUSDValue(sCurrencyCode) {
     return __awaiter(this, void 0, void 0, function () {
-        var apiResponse, err_1;
+        var sAPIURL, apiResponse, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, axios_1.default.get("https://api.coinmarketcap.com/v1/ticker/" + sCurrencyCode + "/").then(function (data) { return Number(data.data[0].price_usd); })];
+                    sAPIURL = "https://api.coinmarketcap.com/v1/ticker/" + sCurrencyCode + "/";
+                    return [4 /*yield*/, axios_1.default.get(sAPIURL).then(function (data) { return Number(data.data[0].price_usd); })];
                 case 1:
                     apiResponse = _a.sent();
                     return [2 /*return*/, apiResponse];
