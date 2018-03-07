@@ -1,6 +1,6 @@
 # Get Crypto FIAT Values
 
-[![Build Status](https://travis-ci.org/samthomson/get-crypto-fiat-values.svg?branch=master)](https://travis-ci.org/samthomson/get-crypto-fiat-values)
+[![Build Status](https://travis-ci.org/samthomson/get-crypto-fiat-values.svg?branch=master)](https://travis-ci.org/samthomson/get-crypto-fiat-values) [![Coverage Status](https://coveralls.io/repos/github/samthomson/get-crypto-fiat-values/badge.svg?branch=master)](https://coveralls.io/github/samthomson/get-crypto-fiat-values?branch=master)
 
 For a crypto currency or several, get its/their FIAT value (in USD).
 
