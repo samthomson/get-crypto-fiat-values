@@ -5,8 +5,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "mocha -r ts-node/register src/**/*.test.ts",
-    "prepublishOnly": "rm -rf dist/ && tsc"
+    "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "repository": "git@github.com:samthomson/get-crypto-fiat-values.git",
   "author": "Sam Thomson <samt@samt.st>",
