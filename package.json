@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "nyc mocha -r ts-node/register src/**/*.test.ts"
+    "test": "nyc mocha -r ts-node/register src/**/*.test.ts",
+    "coveralls": "nyc report --reporter=text-lcov"
   },
   "repository": "git@github.com:samthomson/get-crypto-fiat-values.git",
   "author": "Sam Thomson <samt@samt.st>",
@@ -24,7 +25,8 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "coveralls": "^3.0.0"
   },
   "compilerOptions": {
     "lib": [
