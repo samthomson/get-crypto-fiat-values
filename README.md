@@ -11,6 +11,9 @@ For a crypto currency or several, get its/their FIAT value (in USD).
 
 # use
 
+
+get a single crypto usd value
+-----------------------------
 ```
 import { getCryptoUSDValue } from 'get-crypto-fiat-values'
 
@@ -28,4 +31,23 @@ Got value: 248.464, for litecoin
 Got value: 11519.5, for bitcoin
 Got value: 944.51, for ethereum
 Got value: 0.00707836, for dogecoin
+```
+
+get multiple crypto usd values
+------------------------------
+```
+import { getMultipleCryptoUSDValue } from 'get-crypto-fiat-values'
+
+const oResult: any = await getMultipleCryptoUSDValue(['ethereum', 'dogecoin', 'litecoin', 'ripple'])
+
+const sETHKey = 'ethereum'
+const sDOGEKey = 'dogecoin'
+console.log('ethereum value is: ', oResult[sETHKey].usdValue)
+console.log('dogecoin value is: ', oResult[sDOGEKey].usdValue)
+```
+
+prints:
+```
+ethereum value is:  749.677
+dogecoin value is:  0.00421033
 ```
