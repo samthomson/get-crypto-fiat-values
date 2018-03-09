@@ -14,16 +14,16 @@ For a crypto currency or several, get its/their FIAT value (in USD).
 
 get a single crypto usd value
 -----------------------------
-```
-import { getCryptoUSDValue } from 'get-crypto-fiat-values'
 
-let aPortfolioAllocation: string[] = ['bitcoin', 'ethereum', 'litecoin', 'dogecoin']
+    import { getCryptoUSDValue } from 'get-crypto-fiat-values'
 
-aPortfolioAllocation.forEach(async sCurrency => {
-    let value = await getCryptoUSDValue(sCurrency)
-    console.log(`Got value: ${value}, for ${sCurrency}`)
-})
-```
+    let aPortfolioAllocation: string[] = ['bitcoin', 'ethereum', 'litecoin', 'dogecoin']
+
+    aPortfolioAllocation.forEach(async sCurrency => {
+        const value = await getCryptoUSDValue(sCurrency)
+        console.log(`Got value: ${value}, for ${sCurrency}`)
+    })
+
 
 prints:
 ```
@@ -35,16 +35,16 @@ Got value: 0.00707836, for dogecoin
 
 get multiple crypto usd values
 ------------------------------
-```
-import { getMultipleCryptoUSDValue } from 'get-crypto-fiat-values'
 
-const oResult: any = await getMultipleCryptoUSDValue(['ethereum', 'dogecoin', 'litecoin', 'ripple'])
+    import { getMultipleCryptoUSDValue } from 'get-crypto-fiat-values'
 
-const sETHKey = 'ethereum'
-const sDOGEKey = 'dogecoin'
-console.log('ethereum value is: ', oResult[sETHKey].usdValue)
-console.log('dogecoin value is: ', oResult[sDOGEKey].usdValue)
-```
+    const oResult: any = await getMultipleCryptoUSDValue(['ethereum', 'dogecoin', 'litecoin', 'ripple'])
+
+    const sETHKey = 'ethereum'
+    const sDOGEKey = 'dogecoin'
+    console.log('ethereum value is: ', oResult[sETHKey].usdValue)
+    console.log('dogecoin value is: ', oResult[sDOGEKey].usdValue)
+
 
 prints:
 ```
