@@ -307,7 +307,7 @@ describe('getAllCryptoValues function test', async () => {
     nock.cleanAll()
   })
 
-  it('returns multiple value as expected', async () => {
+  it('returns multiple CCM types as expected', async () => {
     // stub response
     // const apiStub = this.sandbox.stub(axios,' get', function (url))
     nock('https://api.coinmarketcap.com')
@@ -387,11 +387,28 @@ describe('getAllCryptoValues function test', async () => {
         percent_change_24h: -6.87,
         percent_change_7d: -8.06,
         last_updated: 1520522665
+      },
+      {
+        id: 'bitcoin',
+        name: 'Bitcoin',
+        symbol: 'BTC',
+        rank: 1,
+        price_usd: 10000,
+        price_btc: 1,
+        volume_usd_24h: 9152000000,
+        market_cap_usd: 167864563746,
+        available_supply: 16907412,
+        total_supply: 16907412,
+        max_supply: 21000000,
+        percent_change_1h: 0.12,
+        percent_change_24h: -6.87,
+        percent_change_7d: -8.06,
+        last_updated: 1520522665
       }
     ]
-    console.log(result)
     expect(result).to.exist
-    expect(result).to.eql(oExpectedValues)
+    expect(result[0]).to.eql(oExpectedValues[0])
+    expect(result.length).to.eql(3)
   })
 
   it('should return null on bad response', async () => {

@@ -47,11 +47,10 @@ export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | nul
         
         let sAPIURL = `https://api.coinmarketcap.com/v1/ticker/?limit=0`
         let apiResponse = await axios.get(sAPIURL).then(data => {
+            let aReturnCurrencies: CMCCurrencySnapshot[] = []
+
             if (data.data && data.data.length > 0) {
                 let currencies = data.data
-                console.log('data: ', data.data)
-                let aReturnCurrencies: CMCCurrencySnapshot[] = []
-
                 for (let iIndex = 0; iIndex < currencies.length; iIndex++) {
 
                     const {
@@ -61,7 +60,7 @@ export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | nul
                     } = currencies[iIndex]
 
                     const twenty_four_hour_volume = '24h_volume_usd'
-                    const volume_usd_24h = Number(currencies[iIndex][twenty_four_hour])
+                    const volume_usd_24h = Number(currencies[iIndex][twenty_four_hour_volume])
 
                     const rank = Number(currencies[iIndex].rank)
                     const price_usd = Number(currencies[iIndex].price_usd)
@@ -76,7 +75,7 @@ export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | nul
                     const last_updated = Number(currencies[iIndex].last_updated)
                     
                     const oParsingCurrency:CMCCurrencySnapshot = {
-                        id: 'sam',
+                        id,
                         name,
                         symbol,
                         rank,
@@ -94,9 +93,6 @@ export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | nul
                     }
 
                     aReturnCurrencies.push(oParsingCurrency)
-                    console.log(oParsingCurrency)
-
-            
                 }
                 // has returned the data we expected
                 return aReturnCurrencies
@@ -104,5 +100,8 @@ export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | nul
             return null
         })
         return apiResponse
-    }catch(err){ return null }
+    }catch(err){
+        console.log(err)
+        return null
+    }
 }
