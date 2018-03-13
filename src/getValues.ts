@@ -44,62 +44,59 @@ export async function getMultipleCryptoUSDValue (saCurrencyCodes: string[]) : Pr
 export async function getAllCryptoValues (): Promise<CMCCurrencySnapshot[] | null> {
     try{
         // request all currencies, parse to our type and return
-        
-        let sAPIURL = `https://api.coinmarketcap.com/v1/ticker/?limit=0`
-        let apiResponse = await axios.get(sAPIURL).then(data => {
-            let aReturnCurrencies: CMCCurrencySnapshot[] = []
+        const sAPIURL = `https://api.coinmarketcap.com/v1/ticker/?limit=0`
+        const data = await axios.get(sAPIURL)
+        let aReturnCurrencies: CMCCurrencySnapshot[] = []
 
-            if (data.data && data.data.length > 0) {
-                let currencies = data.data
-                for (let iIndex = 0; iIndex < currencies.length; iIndex++) {
+        if (data.data && data.data.length > 0) {
+            let currencies = data.data
+            for (let iIndex = 0; iIndex < currencies.length; iIndex++) {
 
-                    const {
-                        id,
-                        name,
-                        symbol
-                    } = currencies[iIndex]
+                const {
+                    id,
+                    name,
+                    symbol
+                } = currencies[iIndex]
 
-                    const twenty_four_hour_volume = '24h_volume_usd'
-                    const volume_usd_24h = Number(currencies[iIndex][twenty_four_hour_volume])
+                const twenty_four_hour_volume = '24h_volume_usd'
+                const volume_usd_24h = Number(currencies[iIndex][twenty_four_hour_volume])
 
-                    const rank = Number(currencies[iIndex].rank)
-                    const price_usd = Number(currencies[iIndex].price_usd)
-                    const price_btc = Number(currencies[iIndex].price_btc)
-                    const market_cap_usd = Number(currencies[iIndex].market_cap_usd)
-                    const available_supply = Number(currencies[iIndex].available_supply)
-                    const total_supply = Number(currencies[iIndex].total_supply)
-                    const max_supply = Number(currencies[iIndex].max_supply)
-                    const percent_change_1h = Number(currencies[iIndex].percent_change_1h)
-                    const percent_change_24h = Number(currencies[iIndex].percent_change_24h)
-                    const percent_change_7d = Number(currencies[iIndex].percent_change_7d)
-                    const last_updated = Number(currencies[iIndex].last_updated)
-                    
-                    const oParsingCurrency:CMCCurrencySnapshot = {
-                        id,
-                        name,
-                        symbol,
-                        rank,
-                        price_usd,
-                        price_btc,
-                        volume_usd_24h,
-                        market_cap_usd,
-                        available_supply,
-                        total_supply,
-                        max_supply,
-                        percent_change_1h,
-                        percent_change_24h,
-                        percent_change_7d,
-                        last_updated
-                    }
-
-                    aReturnCurrencies.push(oParsingCurrency)
+                const rank = Number(currencies[iIndex].rank)
+                const price_usd = Number(currencies[iIndex].price_usd)
+                const price_btc = Number(currencies[iIndex].price_btc)
+                const market_cap_usd = Number(currencies[iIndex].market_cap_usd)
+                const available_supply = Number(currencies[iIndex].available_supply)
+                const total_supply = Number(currencies[iIndex].total_supply)
+                const max_supply = Number(currencies[iIndex].max_supply)
+                const percent_change_1h = Number(currencies[iIndex].percent_change_1h)
+                const percent_change_24h = Number(currencies[iIndex].percent_change_24h)
+                const percent_change_7d = Number(currencies[iIndex].percent_change_7d)
+                const last_updated = Number(currencies[iIndex].last_updated)
+                
+                const oParsingCurrency:CMCCurrencySnapshot = {
+                    id,
+                    name,
+                    symbol,
+                    rank,
+                    price_usd,
+                    price_btc,
+                    volume_usd_24h,
+                    market_cap_usd,
+                    available_supply,
+                    total_supply,
+                    max_supply,
+                    percent_change_1h,
+                    percent_change_24h,
+                    percent_change_7d,
+                    last_updated
                 }
-                // has returned the data we expected
-                return aReturnCurrencies
+
+                aReturnCurrencies.push(oParsingCurrency)
             }
-            return null
-        })
-        return apiResponse
+            // has returned the data we expected
+            return aReturnCurrencies
+        }
+        return null
     }catch(err){
         console.log(err)
         return null
