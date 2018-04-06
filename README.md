@@ -51,3 +51,17 @@ prints:
 ethereum value is:  749.677
 dogecoin value is:  0.00421033
 ```
+
+## get all crypto values
+
+Returns an array of 'CMCCurrencySnapshot' types representing all currencies listed on coinmarketcap.com.
+
+```
+import { getAllCryptoValues, CMCCurrencySnapshot } from 'get-crypto-fiat-values'
+
+main async () {
+    const aResult: CMCCurrencySnapshot[] | null = await getAllCryptoValues()
+}
+
+main()
+```
