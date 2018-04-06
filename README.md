@@ -4,59 +4,59 @@
 
 For a crypto currency or several, get its/their FIAT value (in USD).
 
-# install
+## install
 
 `yarn add get-crypto-fiat-values`
 
+## use
 
-# use
+### get a single crypto usd value
 
+```typescript
+import { getCryptoUSDValue } from 'get-crypto-fiat-values'
 
-get a single crypto usd value
------------------------------
+let aPortfolioAllocation: string[] = ['bitcoin', 'ethereum', 'litecoin', 'dogecoin']
 
-    import { getCryptoUSDValue } from 'get-crypto-fiat-values'
-
-    let aPortfolioAllocation: string[] = ['bitcoin', 'ethereum', 'litecoin', 'dogecoin']
-
-    aPortfolioAllocation.forEach(async sCurrency => {
-        const value = await getCryptoUSDValue(sCurrency)
-        console.log(`Got value: ${value}, for ${sCurrency}`)
-    })
-
+aPortfolioAllocation.forEach(async sCurrency => {
+    const value = await getCryptoUSDValue(sCurrency)
+    console.log(`Got value: ${value}, for ${sCurrency}`)
+})
+```
 
 prints:
-```
+
+```bash
 Got value: 248.464, for litecoin
 Got value: 11519.5, for bitcoin
 Got value: 944.51, for ethereum
 Got value: 0.00707836, for dogecoin
 ```
 
-get multiple crypto usd values
-------------------------------
+### get multiple crypto usd values
 
-    import { getMultipleCryptoUSDValue } from 'get-crypto-fiat-values'
+```typescript
+import { getMultipleCryptoUSDValue } from 'get-crypto-fiat-values'
 
-    const oResult: any = await getMultipleCryptoUSDValue(['ethereum', 'dogecoin', 'litecoin', 'ripple'])
+const oResult: any = await getMultipleCryptoUSDValue(['ethereum', 'dogecoin', 'litecoin', 'ripple'])
 
-    const sETHKey = 'ethereum'
-    const sDOGEKey = 'dogecoin'
-    console.log('ethereum value is: ', oResult[sETHKey].usdValue)
-    console.log('dogecoin value is: ', oResult[sDOGEKey].usdValue)
-
+const sETHKey = 'ethereum'
+const sDOGEKey = 'dogecoin'
+console.log('ethereum value is: ', oResult[sETHKey].usdValue)
+console.log('dogecoin value is: ', oResult[sDOGEKey].usdValue)
+```
 
 prints:
-```
+
+```bash
 ethereum value is:  749.677
 dogecoin value is:  0.00421033
 ```
 
-## get all crypto values
+### get all crypto values
 
 Returns an array of 'CMCCurrencySnapshot' types representing all currencies listed on coinmarketcap.com.
 
-```
+```typescript
 import { getAllCryptoValues, CMCCurrencySnapshot } from 'get-crypto-fiat-values'
 
 main async () {
